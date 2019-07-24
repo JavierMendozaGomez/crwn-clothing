@@ -21,7 +21,6 @@ class App extends React.Component {
   componentDidMount() {
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
-        console.log('LOgged user')
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot(snapShot => {
           this.setState({
@@ -29,13 +28,14 @@ class App extends React.Component {
               id: snapShot.id,
               ...snapShot.data()
             }
-          }, console.log('snapshot'));
+          }, console.log(`Third call`, this.state.currentUser));
         });
+        console.log(`First call`, this.state);
       }
       this.setState({
         currentUser: userAuth
       }, () => {
-        console.log(this.state.currentUser)
+        console.log(`Second call `, this.state.currentUser)
       });
      });
   }
