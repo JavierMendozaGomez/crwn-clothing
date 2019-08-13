@@ -5,10 +5,10 @@ import {connect} from 'react-redux';
 
 import './cart-icon.styles.scss';
 
-const CartIcon = ({toggleCartHidden}) => (
+const CartIcon = ({toggleCartHidden, count}) => (
     <div className='cart-icon'  onClick={toggleCartHidden}>
         <ShoppingIcon className='shopping-icon'/>
-        <span className='item-count'>0</span>
+        <span className='item-count'>{count}</span>
     </div>
 );
 
@@ -16,4 +16,8 @@ const mapDispatchToProps = dispatch => ({
     toggleCartHidden: () => dispatch(toggleCartHidden())
 });
 
-export default connect(null, mapDispatchToProps)(CartIcon);
+const mapStateToProps = ({cart: {cartItems}}) => ({
+    count: cartItems.reduce((totalCount, items) => (totalCount + items.quantity), 0)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);

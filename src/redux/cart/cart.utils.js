@@ -8,6 +8,6 @@ export const addItemToCart = (cartItems, item) => {
                                       : cartItem
             ));
     } else {
-        return [...cartItems, {...item, quantity: 0}]
+        return [...cartItems, {...item, quantity: 1}]
     }
 };
