@@ -4,8 +4,10 @@ import {connect} from 'react-redux';
 
 import './App.css';
 
+import CheckoutPage from './pages/checkout/checkout.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
+
 import Header from './components/header/header.component';
 import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import {createStructuredSelector} from 'reselect';
@@ -56,6 +58,7 @@ class App extends React.Component {
                       <SignInAndSignUpPage />
                     )
                   } />
+          <Route exact path='/checkout' component={CheckoutPage}/>
         </Switch>
       </div>
     );
